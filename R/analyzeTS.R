@@ -75,10 +75,16 @@
 #' \dontshow{
 #' ## test for one month to make it fast
 #' precip <- precip[between(date, as.POSIXct('1990-1-01', format('%Y-%m-%d'), tz = 'America/Regina'), as.POSIXct('1990-1-5', format('%Y-%m-%d'), tz = 'America/Regina'))]
-#' a <- analyzeTS(precip)
+#' a <- analyzeTS(precip, opts = list('algorithm' = 'NLOPT_LN_NELDERMEAD',
+#'                                    'maxeval' = 10))
 #'}
 #'
-analyzeTS <- function(TS, season = 'month', dist = 'ggamma', acsID = 'weibull', norm = 'N2', n.points = 30, lag.max = 30, constrain = FALSE){
+analyzeTS <- function(TS, season = 'month', dist = 'ggamma', acsID = 'weibull', norm = 'N1', n.points = 30, lag.max = 30, constrain = FALSE, opts = NULL){
+
+  if (is.null(opts)) {
+
+    opts <- formals(fitDist)$opts
+  }
 
   ea <- seasonalACF(TS, ## calculate seasonal empirical ACS
                     season = season,
@@ -93,7 +99,8 @@ analyzeTS <- function(TS, season = 'month', dist = 'ggamma', acsID = 'weibull', 
                                           dist,
                                           norm = norm,
                                           n.points = n.points,
-                                          constrain = constrain))
+                                          constrain = constrain,
+                                          opts = opts))
 
   structure(.Data = list(data = x, ## send the result out
                          dfits = f,
@@ -148,7 +155,7 @@ reportTS <- function(aTS, method = 'dist') {
                               coef = T)$coefficients[2])
     }), 2))
 
-    err <- round(sapply(aTS$dfits, function(x) attr(x, 'err')), 4)
+    err <- round(sapply(aTS$dfits, function(x) attr(x, 'nfo')$objective), 4)
 
     p0 <- 1 - round(sapply(nz, dim)[1,]/sapply(aTS$data[[1]], dim)[1,], 2)
 
@@ -373,7 +380,7 @@ simulateTS <- function(aTS, from = NULL, to = NULL) {
 
   names(ACS) <- names(a)
 
-  p0 <- uval <- gauss <- value <- . <- NULL ## global variable check
+  p0 <- uval <- gauss <- value <- . <- season_id <- rn <- NULL ## global variable check
 
   if (is.null(from)) {
 
@@ -385,17 +392,26 @@ simulateTS <- function(aTS, from = NULL, to = NULL) {
     to <- date[.N, date]
   }
 
-  by <- (strsplit(format(difftime(date[2, date], ## time seq step
-                                  date[1, date])), ' ')[[1]][2])
+  # by <- (strsplit(format(difftime(date[2, date], ## time seq step
+  #                                 date[1, date])), ' ')[[1]][2])
+  #
+  by <- difftime(date[2, date], ## time seq step
+                 date[1, date])
 
   gausian <- seasonalAR(x = seq(from = from, ## generate seasonal gaussian process
                                 to = to,
                                 by = by),
                         ACS = ACS)
 
-  setkey(gausian, season)
+  setkey(x = gausian,
+         season)
 
-  para <- as.data.table(t(sapply(f, function(x) as.matrix(do.call(cbind, x))))) ## get distribution pars
+  para <- as.data.table(
+
+    x = t(sapply(f, function(x) {
+      as.matrix(x = do.call(what = cbind, x))
+    }))
+  ) ## get distribution pars
   names(para) <- names(f[[1]])
   para[, season := as.numeric(gsub('data_nz_', '', rownames(para)))]
   para[, p0 := r[, 'p0']]
@@ -403,16 +419,30 @@ simulateTS <- function(aTS, from = NULL, to = NULL) {
 
   aux <- merge(gausian, para, all.x = T) ## merge gaussian process with parameters
   aux <- aux[order(date)]
-  aux[, uval := (pnorm(gauss) - p0)/(1 - p0)] ## calculate intermitent process
+  aux[, uval := (pnorm(q = gauss) - p0)/(1 - p0)] ## calculate intermitent process
   aux[uval < 0, uval := 0]
 
   d <- getDistArg(dist)
 
-  l <- lapply(seq_along(d), function(i) as.data.frame(aux)[, d[i]]) ## get dist para
-  names(l) <- d
+  l <- as.data.table(x = r[, d],
+                     keep.rownames = TRUE) ## get dist parameters for each season
 
-  suppressWarnings(x <- do.call(paste0('q', dist), args = c(list(p = aux[, uval]), l))) ## transform gaussian process
-  aux[, value := x]
+  l[, 'season_id' := as.numeric(
+    x = sapply(X = strsplit(x = rn,
+                            split = '_'),
+               FUN = '[[', 2)
+  )] ## make season_id variable
+
+
+  for(i in l[, season_id]) {
+
+    trans.para <- l[season_id == i,
+                    !c('rn', 'season_id')] ## select correct pars
+
+    aux[season == i, value :=  do.call(what = paste0('q', dist),
+                                       args = c(list(p = uval),
+                                                as.list(trans.para)))] ## transform correct season gausian process
+  }
 
   out <- aux[, .(date, value)] ## select date amd value
 

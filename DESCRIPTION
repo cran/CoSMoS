@@ -1,28 +1,27 @@
 Package: CoSMoS
 Type: Package
 Title: Complete Stochastic Modelling Solution
-Version: 1.0.1
+Version: 1.1.3
 Authors@R: c(person("Filip", "Strnad",
                      role = c("aut", "cre"),
                      email = "strnadf@fzp.czu.cz"),
               person("Simon Michael", "Papalexiou", 
                       role = c("aut")),
               person("Yannis", " Markonis", 
-                      role = "ctb"))
+                      role = "aut"))
 Description: A single framework, unifying, extending, and improving a general-purpose modelling strategy, based on the assumption that any process can emerge by transforming a specific 'parent' Gaussian process Papalexiou (2018) <doi:10.1016/j.advwatres.2018.02.013>.
 License: GPL-3
-Depends: R (>= 3.6.0), ggplot2, pracma, nloptr, data.table, methods,
-        stats
+Depends: R (>= 3.5.0), ggplot2, nloptr, data.table, methods, stats
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Suggests: testthat, knitr, rmarkdown
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2019-05-09 05:13:48 UTC; phill
+Packaged: 2020-03-31 19:53:51 UTC; phill
 Author: Filip Strnad [aut, cre],
   Simon Michael Papalexiou [aut],
-  Yannis Markonis [ctb]
+  Yannis Markonis [aut]
 Maintainer: Filip Strnad <strnadf@fzp.czu.cz>
 Repository: CRAN
-Date/Publication: 2019-05-09 08:30:53 UTC
+Date/Publication: 2020-04-01 14:10:13 UTC

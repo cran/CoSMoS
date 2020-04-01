@@ -1,16 +1,16 @@
-## ----setup, include=FALSE------------------------------------------------
+## ----setup, include=FALSE-----------------------------------------------------
 knitr::opts_chunk$set(echo = TRUE, fig.width = 7, eval = FALSE)
 
-## ---- message = FALSE----------------------------------------------------
+## ---- message = FALSE---------------------------------------------------------
 #  library(CoSMoS)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #  marginaldist <- 'ggamma'
 #  param <- list(scale = 1,
 #                shape1 = .8,
 #                shape2 = .8)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #  no <- 1000
 #  ggamma_sim <- rggamma(n = no,
 #                        scale = 1,
@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 7, eval = FALSE)
 #  plot(density(ggamma_sim), main = "")
 #  acf(ggamma_sim, main = "")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #  acf <- c(1, 0.8)
 #  ggamma_sim <- generateTS(n = no,
 #                           margdist = marginaldist,
@@ -32,7 +32,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 7, eval = FALSE)
 #  plot(density(ggamma_sim[[1]]), main = "")
 #  acf(ggamma_sim[[1]], main = "")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #  acf <- c(1, 0.5, 0.5, 0.4, 0.4) #up to lag-4
 #  ggamma_sim <- generateTS(n = no,
 #                           margdist = marginaldist,
@@ -43,7 +43,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 7, eval = FALSE)
 #  plot(density(ggamma_sim[[1]]), main = "")
 #  acf(ggamma_sim[[1]], main = "")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #  ## specify lag
 #  lags <- 0:10
 #  
@@ -73,7 +73,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 7, eval = FALSE)
 #    scale_x_continuous(breaks = t) +
 #    theme_grey()
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #  acf = acs(id = 'paretoII',
 #            t = 0:30,
 #            scale = 1,
@@ -86,7 +86,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 7, eval = FALSE)
 #  par(mfrow = c(1, 1))
 #  plot(ggamma_sim, main = "")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #  my_acf <- exp(seq(0, -2, -0.1))
 #  ggamma_sim <- generateTS(n = no,
 #                           margdist = marginaldist,
@@ -97,7 +97,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 7, eval = FALSE)
 #  par(mfrow = c(1, 2))
 #  acf(ggamma_sim[[1]])
 
-## ---- fig.height = 7-----------------------------------------------------
+## ---- fig.height = 7----------------------------------------------------------
 #  prob_zero <- .9
 #  ggamma_sim <- generateTS(n = no,
 #                           margdist = marginaldist,
@@ -108,17 +108,17 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 7, eval = FALSE)
 #  par(mfrow = c(1, 1))
 #  plot(ggamma_sim, main = "")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #  checkTS(ggamma_sim)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #  data('precip')
 #  plot(precip, type = 'l')
 #  par(mfrow = c(1, 2))
 #  plot(density(precip$value), main = "", xlim = c(0, 10)) #Does not plot extreme values
 #  acf(precip$value, main = "", lag.max = 20)
 
-## ---- fig.height = 9-----------------------------------------------------
+## ---- fig.height = 9----------------------------------------------------------
 #  precip_ggamma <- analyzeTS(TS = precip,
 #                                     season = 'month',
 #                                     dist = 'ggamma',
@@ -128,7 +128,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 7, eval = FALSE)
 #  reportTS(precip_ggamma, 'acs')
 #  reportTS(precip_ggamma, 'stat')
 
-## ---- warning = FALSE, fig.height = 9------------------------------------
+## ---- warning = FALSE, fig.height = 9-----------------------------------------
 #  precip_pareto <- analyzeTS(TS = precip,
 #                                     season = 'month',
 #                                     dist = 'paretoII',
@@ -137,7 +137,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 7, eval = FALSE)
 #  reportTS(precip_pareto, 'dist')
 #  reportTS(precip_pareto, 'acs')
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #  sim_precip <- simulateTS(aTS = precip_ggamma,
 #                           from = as.POSIXct('1978-12-01 00:00:00'),
 #                           to = as.POSIXct('2008-12-01 00:00:00'))
@@ -152,7 +152,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 7, eval = FALSE)
 #    facet_wrap(~id, ncol = 1) +
 #    theme_classic()
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #  id <- '02135000'
 #  dta_raw <- as.data.table(read.fwf(sprintf(
 #    'ftp://hydrology.nws.noaa.gov/pub/gcip/mopex/US_Data/Us_438_Daily/%s.dly', id),
