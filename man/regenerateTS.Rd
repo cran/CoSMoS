@@ -15,13 +15,14 @@ regenerateTS(ts, TSn = 1)
 Resamples given Timeseries
 }
 \details{
-You have used the generateTS function and you wish to generate more time series. Instead of re-running the generateTS you can use the regenerateTS Timeseries that used all the parameters calculated by the generateTS function and thus it is faster.
+You have used the generateTS function and you wish to generate more time series. Instead of re-running generateTS you can use regenerateTS, which generates timeseries using the parameters previously calculated by the generateTS function,  and thus it is faster.
 }
 \examples{
 
 library(CoSMoS)
 
-## define marginal distribution and arguments with target autocorrelation structure
+## define marginal distribution and arguments with target
+## autocorrelation structure
 x <- generateTS(margdist = 'burrXII',
                 margarg = list(scale = 1,
                                shape1 = .75,

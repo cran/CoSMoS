@@ -16,14 +16,14 @@ actpnts(margdist, margarg, p0 = 0, distbounds = c(-Inf, Inf))
 \item{distbounds}{distribution bounds (default set to c(-Inf, Inf))}
 }
 \description{
-Transforms a gaussian process in order to match a target marginal lowers its autocorrelation values. The actpnts evaluates the corresponding autocorrelations for the given target marginal for a set of gaussian correlations, i.e., it returns  (\eqn{\rho_x , \rho_z}) points where \eqn{\rho_x and \rho_z} represent, respectively, the autocorrelations of the target and gaussian process.
+Transforms a gaussian process in order to match a target marginal lowers its autocorrelation values. The actpnts evaluates the corresponding autocorrelations for the given target marginal for a set of gaussian correlations, i.e., it returns  (\eqn{\rho_x , \rho_z}) points where \eqn{\rho_x} and \eqn{\rho_z} represent, respectively, the autocorrelations of the target and gaussian process.
 }
 \examples{
 
 library(CoSMoS)
 
-## here we target to a process that has the Pareto type II marginal distribution
-## with scale parameter 1 and shape parameter 0.3
+## here we target to a process that has the Pareto type II
+## marginal distribution with scale parameter 1 and shape parameter 0.3
 ## (note that all parameters have to be named)
 dist <- 'paretoII'
 distarg <- list(scale = 1, shape = .3)

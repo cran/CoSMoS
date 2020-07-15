@@ -1,27 +1,37 @@
 Package: CoSMoS
 Type: Package
 Title: Complete Stochastic Modelling Solution
-Version: 1.1.3
+Version: 2.0.0
 Authors@R: c(person("Filip", "Strnad",
-                     role = c("aut", "cre"),
-                     email = "strnadf@fzp.czu.cz"),
-              person("Simon Michael", "Papalexiou", 
+                     role = "aut"),
+             person("Simon Michael", "Papalexiou", 
                       role = c("aut")),
-              person("Yannis", " Markonis", 
-                      role = "aut"))
+             person("Francesco", "Serinaldi", 
+                      role = "aut"),
+             person("Yannis", "Markonis", 
+                      role = "aut"),
+             person("Kevin", "Shook", 
+                      role = c("ctb", "cre"),
+                      email = "kevin.shook@usask.ca")
+              )
 Description: A single framework, unifying, extending, and improving a general-purpose modelling strategy, based on the assumption that any process can emerge by transforming a specific 'parent' Gaussian process Papalexiou (2018) <doi:10.1016/j.advwatres.2018.02.013>.
 License: GPL-3
-Depends: R (>= 3.5.0), ggplot2, nloptr, data.table, methods, stats
+Depends: R (>= 3.5.0), ggplot2, data.table
+Imports: utils, methods, stats, grDevices, nloptr, MBA, Matrix, mAr,
+        matrixcalc, mvtnorm, plotly, cowplot, directlabels, animation,
+        pracma
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Suggests: testthat, knitr, rmarkdown
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2020-03-31 19:53:51 UTC; phill
-Author: Filip Strnad [aut, cre],
+Packaged: 2020-07-09 22:13:48 UTC; kevin
+Author: Filip Strnad [aut],
   Simon Michael Papalexiou [aut],
-  Yannis Markonis [aut]
-Maintainer: Filip Strnad <strnadf@fzp.czu.cz>
+  Francesco Serinaldi [aut],
+  Yannis Markonis [aut],
+  Kevin Shook [ctb, cre]
+Maintainer: Kevin Shook <kevin.shook@usask.ca>
 Repository: CRAN
-Date/Publication: 2020-04-01 14:10:13 UTC
+Date/Publication: 2020-07-15 22:30:13 UTC
