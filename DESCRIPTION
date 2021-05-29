@@ -1,37 +1,39 @@
 Package: CoSMoS
 Type: Package
 Title: Complete Stochastic Modelling Solution
-Version: 2.0.0
-Authors@R: c(person("Filip", "Strnad",
-                     role = "aut"),
-             person("Simon Michael", "Papalexiou", 
-                      role = c("aut")),
+Version: 2.1.0
+Date: 2021-05-20
+Authors@R: c(person("Simon Michael", "Papalexiou", 
+                      role = "aut"),
              person("Francesco", "Serinaldi", 
                       role = "aut"),
+             person("Filip", "Strnad",
+                     role = "aut"),
              person("Yannis", "Markonis", 
                       role = "aut"),
              person("Kevin", "Shook", 
                       role = c("ctb", "cre"),
                       email = "kevin.shook@usask.ca")
               )
-Description: A single framework, unifying, extending, and improving a general-purpose modelling strategy, based on the assumption that any process can emerge by transforming a specific 'parent' Gaussian process Papalexiou (2018) <doi:10.1016/j.advwatres.2018.02.013>.
-License: GPL-3
+Description: Makes univariate, multivariate, or random fields simulations precise and simple. Just select the desired time series or random fields’ properties and it will do the rest. CoSMoS is based on the framework described in Papalexiou (2018, <doi:10.1016/j.advwatres.2018.02.013>), extended for random fields in Papalexiou and Serinaldi (2020, <doi:10.1029/2019WR026331>), and further advanced in Papalexiou et al. (2021, <doi:10.1029/2020WR029466>) to allow fine-scale space-time simulation of storms (or even cyclone-mimicking fields).
 Depends: R (>= 3.5.0), ggplot2, data.table
 Imports: utils, methods, stats, grDevices, nloptr, MBA, Matrix, mAr,
-        matrixcalc, mvtnorm, plotly, cowplot, directlabels, animation,
-        pracma
+        matrixcalc, mvtnorm, cowplot, directlabels, animation,
+        ggquiver, pracma, plot3D
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Suggests: testthat, knitr, rmarkdown
 VignetteBuilder: knitr
-NeedsCompilation: no
-Packaged: 2020-07-09 22:13:48 UTC; kevin
-Author: Filip Strnad [aut],
-  Simon Michael Papalexiou [aut],
+Author: Simon Michael Papalexiou [aut],
   Francesco Serinaldi [aut],
+  Filip Strnad [aut],
   Yannis Markonis [aut],
   Kevin Shook [ctb, cre]
 Maintainer: Kevin Shook <kevin.shook@usask.ca>
+License: GPL-3
+URL: https://github.com/TycheLab/CoSMoS
+NeedsCompilation: no
+Packaged: 2021-05-29 16:49:14 UTC; kevin
 Repository: CRAN
-Date/Publication: 2020-07-15 22:30:13 UTC
+Date/Publication: 2021-05-29 23:20:08 UTC

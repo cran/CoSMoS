@@ -24,12 +24,12 @@ stcfgneiting14(t, s, a, c, alpha, beta, gamma, tau)
 \item{tau}{space-time interaction parameter. Valid range: \eqn{\ge 1} (for 2-dimensional fields)}
 }
 \description{
-Provides spatiotemporal correlation structure function proposed by \href{https://doi.org/10.1198/016214502760047113}{Gneiting (2002)} (Eq.14 at p. 593)
+Provides spatiotemporal correlation structure function proposed by
+Gneiting (2002; Eq.14 at p. 593).
 }
 \examples{
 
-library(CoSMoS)
-library(plotly)
+library(plot3D)
 
 ## specify grid of spatial and temporal lags
 d <- 31
@@ -51,15 +51,15 @@ g14 <- stcfgneiting14(t = st[, 1],
 g14.m <- matrix(g14,
                 nrow = d)
 
-plot_ly(z = ~g14.m) \%>\%
-    add_surface() \%>\%
-    layout(
-        scene = list(
-            xaxis = list(title = "Time lag"),
-            yaxis = list(title = "Distance"),
-            zaxis = list(title = "STCF")
-        )
-    ) \%>\%
-    hide_colorbar()
+persp3D(z = g14.m, x = 1: nrow(g14.m), y = 1:ncol(g14.m),
+        expand = 1, main = "", scale = TRUE, facets = TRUE,
+        xlab="Time lag", ylab = "Distance", zlab = "STCF",
+        colkey = list(side = 4, length = 0.5), phi = 20, theta = 120,
+        resfac = 5,  col= gg2.col(100))
 
+}
+\references{
+Gneiting, T. (2002). Nonseparable, Stationary Covariance Functions
+for Space-Time Data, Journal of the American Statistical Association,
+97:458, 590-600, \doi{10.1198/016214502760047113}
 }
