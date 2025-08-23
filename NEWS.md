@@ -1,3 +1,19 @@
+CoSMoS v2.1.1 (Release date: 2025-08-23)
+================
+
+Minor bug fixes
+----------------
+* fixed deprecated use of facet_grid(facets = variable in ggplot2
+* package data.table no longer in Depends
+
+
+CoSMoS v2.1.0 (Release date: 2021-05-25)
+================
+
+Major upgrade to package functionality:    
+----------------
+* Adds Lagrangian Random fields functionality allowing simulation of storms, cyclones and other environmental fluxes
+
 CoSMoS v2.0.0 (Release date: 2020-06-23)
 ================
 
