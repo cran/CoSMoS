@@ -1,4 +1,4 @@
-91a8d4f4b6fd1eb6774c648ae0871b48 *DESCRIPTION
+131dcdd224d651074fd8571c1ee14bd6 *DESCRIPTION
 a95fef7276bc0f99710ed955c6afcfab *NAMESPACE
 6cd7328be998228f117118e96c1a7f1c *NEWS.md
 232a281ac818ffd68795c7314f52c805 *R/AR1.R
@@ -50,8 +50,8 @@ bca270acf9403c058dc3286859cd77d7 *R/seasonalACF.R
 94c8dcd50110f93d5d56ebe92c1e8c9b *data/precip.rda
 68caffd4109781f3fc9d130d685d1ee2 *inst/CITATION
 2efe1147c79ec424bc1ff8ec17714a0c *inst/doc/vignette.R
-d5de61b2c60703cb1ef8f96d73f289c1 *inst/doc/vignette.Rmd
-7127557bd9a6aa029ae1103f1996b321 *inst/doc/vignette.html
+650ea858839e1af8f03a90a549aa92d5 *inst/doc/vignette.Rmd
+4b6471121b411c2504ca3b424fa020f2 *inst/doc/vignette.html
 868defee4e78a0163e9a6cd84b806857 *man/ACSfunctions.Rd
 4c535f3d1ee282e599e8baed9449527e *man/AR1.Rd
 2988fdfb85f9018d10093b816e719ca9 *man/ARp.Rd
@@ -131,4 +131,4 @@ fd2cb75280751586d1b0efb5257cd9b1 *tests/testthat/test_distribution_fit.R
 6e6f3a60a95f56368e9c70dcb13e6f49 *tests/testthat/test_l_moments.R
 83c1e8d882bcca4e98eeb620e075aad1 *tests/testthat/test_moments.R
 426628d4bcc357a2741fce47480bea98 *tests/testthat/test_ts_gen.R
-d5de61b2c60703cb1ef8f96d73f289c1 *vignettes/vignette.Rmd
+650ea858839e1af8f03a90a549aa92d5 *vignettes/vignette.Rmd
